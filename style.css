@@ -103,7 +103,14 @@ html{
     margin-top: 150px;
     font-family: cursive;
     font-weight: 200;
-    
+    text-decoration: none;
     text-align-last: center;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-family: cursive;
+    font-weight: 200;
 }
 

@@ -5,6 +5,7 @@ const toggle=document.getElementById('toggle');
 const background=document.querySelector('html');
 const volume=document.getElementById('off');
 const div=document.getElementById('tog');
+const link=document.querySelector('a');
 let arr2 = [];
 let lastOperator = '';
 
@@ -78,10 +79,12 @@ let counter=0;
                 e.target.style.transform = 'translateX(60px)';
                 background.style.backgroundColor = 'black';
                 div.style.border = '3px solid white';
+                link.style.color='white';
             } else {
                 e.target.style.transform = 'translateX(-5px)';
                 background.style.backgroundColor = 'white';
                 div.style.border = '3px solid black';
+                link.style.color='black';
             }
         });
 
