@@ -9,19 +9,19 @@ const div=document.getElementById('tog');
 let lastOperator = '';
 
 function add(arr) {
-    return arr.reduce((acc, value) => acc + value, 0).toFixed(4);
+    return arr.reduce((acc, value) => acc + value, 0).toFixed(3);
 }
 
 function subtract(arr) {
-    return arr.reduce((acc, value) => acc - value).toFixed(4);
+    return arr.reduce((acc, value) => acc - value).toFixed(3);
 }
 
 function multiply(arr) {
-    return arr.reduce((acc, value) => acc * value).toFixed(4);
+    return arr.reduce((acc, value) => acc * value).toFixed(3);
 }
 
 function divide(arr) {
-    return arr.reduce((acc, value) => acc / value).toFixed(4);
+    return arr.reduce((acc, value) => acc / value).toFixed(3);
 }
 
 function negative(arr){
@@ -52,6 +52,12 @@ function calculator(operator, arr) {
             return (Math.tan(arr)).toFixed(4);
         case 'Log':
             return (Math.log10(arr)).toFixed(4);
+        case '%':
+            return arr/100;
+        case '√':
+            return (Math.sqrt(arr)).toFixed(4);
+        case 'x^y':
+            return Math.pow(arr[0],arr[1]);
         default:
             return null;
     }
@@ -97,7 +103,7 @@ let counter=0;
         let operator = null;
         let countClick = 0;
         
-        const operatorCollection = ['+', '-', 'x', '/', 'Sin', 'Cos', 'Tan', '-/+','Log'];
+        const operatorCollection = ['+', '-', 'x', '/', 'Sin', 'Cos', 'Tan', '-/+','Log','%','√','x^y'];
         const numCollection = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9','.'];
         
         
@@ -119,27 +125,40 @@ let counter=0;
         
                 if (numCollection.includes(value)) {
                     // Handling the input of numbers
+                    
                     let num1 = value;
                     if (countClick > 1) {
                         // Concatenate to form multi-digit numbers
                         arr1[i] = (arr1[i] || '') + num1;
+                        display.textContent=arr1[i];
                     } else {
                         arr1[i] = num1;
+                        display.textContent=arr1[i];
                     }
 
         
                 } else if (operatorCollection.includes(value)) {
                     // Handling the operator input
+
+                    display.textContent=value;
+                    
                     operator = value;
                     i++;
-                    countClick = 0; 
+                    countClick = 0;
+                    if(value==='-/+' || value==='x^y'){
+                        display.textContent='';
+                    } 
                      // Reset countClick for the next number input
-                    if(value==='Sin'|| value==='Cos'|| value==='Tan'||value==='Log'){
+                    if(value==='Sin'|| value==='Cos'|| value==='Tan'||value==='Log'|| value==='%'|| value==='√'){
                         operator=value;
                         i=0;
+                        
+                        display.textContent=value;
+                        
                     }
                 } else if (value === '=') {
                     // Perform calculation and display the result
+                    
                     let result = calculator(operator, arr1.map(Number)); // Convert array to numbers
                     display.textContent=result; 
 
@@ -148,3 +167,5 @@ let counter=0;
                 }
             });
         });
+
+

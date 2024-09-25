@@ -24,6 +24,7 @@
 
 #off{
     border-radius: 100%;
+    text-align:center;
     width: 40px;
     height: 40px;
     padding: 20px;
@@ -37,6 +38,8 @@
 #off:hover{
     background-color: #666;
 }
+
+
 
 
 html{
