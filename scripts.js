@@ -57,7 +57,7 @@ function calculator(operator, arr) {
         case '√':
             return (Math.sqrt(arr)).toFixed(4);
         case 'x^y':
-            return Math.pow(arr[0],arr[1]);
+            return (Math.pow(arr[0],arr[1])).toFixed(4);
         default:
             return null;
     }
@@ -68,16 +68,16 @@ let counter=0;
 
         
         sound.muted = false;
-        volume.style.backgroundImage='url("speaker-31227_1280.png")';
+        volume.textContent = '🔊';
 
         volume.addEventListener('click', function() {
             sound.muted = !sound.muted; // Toggle mute state
 
-            // Change the background image based on the mute state
+           
             if (sound.muted) {
-                volume.style.backgroundImage = 'url("mute-1628277_1280.png")'; 
+                volume.textContent = '🔈'; 
             } else {
-                volume.style.backgroundImage = 'url("speaker-31227_1280.png")'; // Replace with your unmute icon
+                volume.textContent = '🔊'; 
             }
         });
 

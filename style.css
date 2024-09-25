@@ -27,8 +27,9 @@
     text-align:center;
     width: 40px;
     height: 40px;
-    padding: 20px;
+    padding: 0px;
     margin-top: 20px;
+    font-size: 1.5em;
     margin-left: 30px;
     box-shadow: 0px 5px 2px rgb(32, 37, 43);
     background-size: cover;
