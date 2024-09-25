@@ -68,16 +68,15 @@ let counter=0;
 
         
         sound.muted = false;
-        volume.textContent = '🔊';
-
+        volume.textContent= 'volume on' 
+        
         volume.addEventListener('click', function() {
             sound.muted = !sound.muted; // Toggle mute state
-
-           
+            
             if (sound.muted) {
-                volume.textContent = '🔈'; 
+                volume.textContent = 'Volume off';
             } else {
-                volume.textContent = '🔊'; 
+               volume.textContent= 'volume on';
             }
         });
 
