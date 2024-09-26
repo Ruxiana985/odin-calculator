@@ -59,10 +59,13 @@ html{
 .display{
     height: 50px;
     width: 90%;
+    box-sizing: content-box;
     border: 5px ridge rgb(245, 239, 239);
     margin-bottom: 20px;
     margin-top: 20px;
     text-align: center;
+    font-size: 1.5em;
+    padding: 20px;
     background-color: rgb(226, 219, 226);
     
 }

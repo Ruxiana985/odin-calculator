@@ -44,7 +44,12 @@ function calculator(operator, arr) {
             return negative(arr);
 
         case 'Sin':
-            return Math.sin(arr);
+            return (Math.sin(arr)).toFixed(4);
+        
+        case 'Cos':
+            return (Math.cos(arr)).toFixed(4);
+        case 'Tan':
+            return (Math.tan(arr)).toFixed(4);
         default:
             return null;
     }
@@ -108,12 +113,18 @@ let counter=0;
                     } else {
                         arr1[i] = num1;
                     }
+
         
                 } else if (operatorCollection.includes(value)) {
                     // Handling the operator input
                     operator = value;
                     i++;
-                    countClick = 0;  // Reset countClick for the next number input
+                    countClick = 0; 
+                     // Reset countClick for the next number input
+                    if(value==='Sin'|| value==='Cos'|| value==='Tan'){
+                        operator=value;
+                        i=0;
+                    }
                 } else if (value === '=') {
                     // Perform calculation and display the result
                     let result = calculator(operator, arr1.map(Number)); // Convert array to numbers
