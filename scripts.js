@@ -9,19 +9,19 @@ const div=document.getElementById('tog');
 let lastOperator = '';
 
 function add(arr) {
-    return arr.reduce((acc, value) => acc + value, 0);
+    return arr.reduce((acc, value) => acc + value, 0).toFixed(4);
 }
 
 function subtract(arr) {
-    return arr.reduce((acc, value) => acc - value);
+    return arr.reduce((acc, value) => acc - value).toFixed(4);
 }
 
 function multiply(arr) {
-    return arr.reduce((acc, value) => acc * value);
+    return arr.reduce((acc, value) => acc * value).toFixed(4);
 }
 
 function divide(arr) {
-    return arr.reduce((acc, value) => acc / value);
+    return arr.reduce((acc, value) => acc / value).toFixed(4);
 }
 
 function negative(arr){
@@ -50,6 +50,8 @@ function calculator(operator, arr) {
             return (Math.cos(arr)).toFixed(4);
         case 'Tan':
             return (Math.tan(arr)).toFixed(4);
+        case 'Log':
+            return (Math.log10(arr)).toFixed(4);
         default:
             return null;
     }
@@ -62,7 +64,7 @@ let counter=0;
         sound.muted = false;
         volume.style.backgroundImage='url("speaker-31227_1280.png")';
 
-        volume.addEventListener('click', function(e) {
+        volume.addEventListener('click', function() {
             sound.muted = !sound.muted; // Toggle mute state
 
             // Change the background image based on the mute state
@@ -95,14 +97,25 @@ let counter=0;
         let operator = null;
         let countClick = 0;
         
-        const operatorCollection = ['+', '-', 'x', '/', 'Sin', 'Cos', 'Tan', '-/+'];
+        const operatorCollection = ['+', '-', 'x', '/', 'Sin', 'Cos', 'Tan', '-/+','Log'];
         const numCollection = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9','.'];
+        
         
         buttons.forEach(button => {
             button.addEventListener('click', function (e) {
+                
                 sound.play();
                 countClick++;
                 let value = e.target.textContent;
+                
+                if(value==='C'){
+                    arr1=[];
+                    operator=null;
+                    num1=null;
+                    countClick=0;
+                    i=0;
+                    display.textContent='';
+                }
         
                 if (numCollection.includes(value)) {
                     // Handling the input of numbers
@@ -121,17 +134,17 @@ let counter=0;
                     i++;
                     countClick = 0; 
                      // Reset countClick for the next number input
-                    if(value==='Sin'|| value==='Cos'|| value==='Tan'){
+                    if(value==='Sin'|| value==='Cos'|| value==='Tan'||value==='Log'){
                         operator=value;
                         i=0;
                     }
                 } else if (value === '=') {
                     // Perform calculation and display the result
                     let result = calculator(operator, arr1.map(Number)); // Convert array to numbers
-                    display.textContent=result; // Replace this with the display logic
-                     // Reset for next calculation
+                    display.textContent=result; 
+
                     i = 0;
-                    arr1= [result];
+                    arr1= [Number(result)];
                 }
             });
         });
